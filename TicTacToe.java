@@ -1,25 +1,64 @@
-/ **
-* TicTacToe
-* UC6 places a player's symbol on the board at the given position.
-* This use case focuses on updating game state.
-*/
+import java.util.Random;
+
 public class TicTacToe {
 
-static char[] [] board = new char [3] [3] ;
+    // Initialize empty board
+    static char[][] board = {
+        {' ', ' ', ' '},
+        {' ', ' ', ' '},
+        {' ', ' ', ' '}
+    };
 
-/ **
-* Entry point of the program. Places a sample move
-* and prints the updated cell value.
-*/
-Run | Debug
-public static void main(String[] args) {
-placeMove(row: 0, col: 0, symbol: 'X');
-System.out.println(board[ø] [0]);
+    static char computerSymbol = 'O';
 
-/ **
-* Updates the board by placing the given symbol at
-* the specified row and column.
-* Input: Row, Column, Symbol
-* Hint: Assume the move is already validated.
-*/
-static void placeMove(int row, int col, char symbol) {.
+    /**
+     * Entry point of the program
+     */
+    public static void main(String[] args) {
+        computerMove();
+        printBoard();
+    }
+
+    /**
+     * Generates random valid move and places symbol
+     */
+    static void computerMove() {
+        Random random = new Random();
+
+        while (true) {
+            int slot = random.nextInt(9) + 1; // 1 to 9
+
+            int row = getRowFromSlot(slot);
+            int col = getColFromSlot(slot);
+
+            if (isValidMove(row, col)) {
+                board[row][col] = computerSymbol;
+                System.out.println("Computer chose slot: " + slot);
+                break;
+            }
+        }
+    }
+
+    // UC4 logic
+    static int getRowFromSlot(int slot) {
+        return (slot - 1) / 3;
+    }
+
+    static int getColFromSlot(int slot) {
+        return (slot - 1) % 3;
+    }
+
+    // UC5 logic
+    static boolean isValidMove(int row, int col) {
+        return row >= 0 && row < 3 &&
+               col >= 0 && col < 3 &&
+               board[row][col] == ' ';
+    }
+
+    // Display board
+    static void printBoard() {
+        for (int i = 0; i < 3; i++) {
+            System.out.println(board[i][0] + " | " + board[i][1] + " | " + board[i][2]);
+        }
+    }
+}
