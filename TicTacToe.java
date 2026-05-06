@@ -1,46 +1,56 @@
+import java.util.Random;
+
+/**
+ * TicTacToe
+ * UC2 performs a random toss to decide who plays first and assigns
+ * symbols (X or O) to the human and computer accordingly.
+ */
 public class TicTacToe {
 
-    static char[][] board = new char[3][3];
+    static boolean isHumanTurn;
+    static char humanSymbol;
+    static char computerSymbol;
 
     /**
      * Entry point of the program.
-     * It initializes the board and prints the empty grid.
      */
     public static void main(String[] args) {
-        initializeBoard();
-        printBoard();
+        tossAndAssignSymbols();
+        displayTossResult();
     }
 
     /**
-     * Initializes the 3x3 board with '-' to indicate empty cells.
+     * Uses random logic to decide the first player and assigns symbols
      */
-    static void initializeBoard() {
-        for (int row = 0; row < 3; row++) {
-            for (int col = 0; col < 3; col++) {
-                board[row][col] = '-';
-            }
+    static void tossAndAssignSymbols() {
+        Random random = new Random();
+
+        // 0 → Human, 1 → Computer
+        int toss = random.nextInt(2);
+
+        if (toss == 0) {
+            isHumanTurn = true;
+            humanSymbol = 'X';
+            computerSymbol = 'O';
+        } else {
+            isHumanTurn = false;
+            humanSymbol = 'O';
+            computerSymbol = 'X';
         }
     }
 
     /**
-     * Prints the Tic-Tac-Toe board in grid format.
+     * Displays the toss result
      */
-    static void printBoard() {
-        System.out.println("Tic-Tac-Toe Board:");
-
-        for (int row = 0; row < 3; row++) {
-            for (int col = 0; col < 3; col++) {
-                System.out.print(board[row][col]);
-
-                if (col < 2) {
-                    System.out.print(" | ");
-                }
-            }
-            System.out.println();
-
-            if (row < 2) {
-                System.out.println("---------");
-            }
+    static void displayTossResult() {
+        if (isHumanTurn) {
+            System.out.println("Human won the toss!");
+            System.out.println("Human plays first with symbol: " + humanSymbol);
+            System.out.println("Computer plays with symbol: " + computerSymbol);
+        } else {
+            System.out.println("Computer won the toss!");
+            System.out.println("Computer plays first with symbol: " + computerSymbol);
+            System.out.println("Human plays with symbol: " + humanSymbol);
         }
     }
 }
