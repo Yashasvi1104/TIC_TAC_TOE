@@ -1,34 +1,25 @@
+/ **
+* TicTacToe
+* UC6 places a player's symbol on the board at the given position.
+* This use case focuses on updating game state.
+*/
 public class TicTacToe {
 
-    // 3x3 board initialized with empty spaces
-    static char[][] board = {
-        {' ', ' ', ' '},
-        {' ', ' ', ' '},
-        {' ', ' ', ' '}
-    };
+static char[] [] board = new char [3] [3] ;
 
-    /**
-     * Entry point of the program.
-     */
-    public static void main(String[] args) {
-        System.out.println(isValidMove(1, 1)); // test case
-    }
+/ **
+* Entry point of the program. Places a sample move
+* and prints the updated cell value.
+*/
+Run | Debug
+public static void main(String[] args) {
+placeMove(row: 0, col: 0, symbol: 'X');
+System.out.println(board[ø] [0]);
 
-    /**
-     * Checks if the move is inside the board and the cell is empty
-     */
-    static boolean isValidMove(int row, int col) {
-
-        // Check boundaries (0 to 2)
-        if (row < 0 || row > 2 || col < 0 || col > 2) {
-            return false;
-        }
-
-        // Check if cell is empty
-        if (board[row][col] != ' ') {
-            return false;
-        }
-
-        return true;
-    }
-}
+/ **
+* Updates the board by placing the given symbol at
+* the specified row and column.
+* Input: Row, Column, Symbol
+* Hint: Assume the move is already validated.
+*/
+static void placeMove(int row, int col, char symbol) {.
