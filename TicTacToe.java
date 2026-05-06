@@ -1,26 +1,34 @@
 public class TicTacToe {
 
+    // 3x3 board initialized with empty spaces
+    static char[][] board = {
+        {' ', ' ', ' '},
+        {' ', ' ', ' '},
+        {' ', ' ', ' '}
+    };
+
     /**
      * Entry point of the program.
      */
     public static void main(String[] args) {
-        int slot = 7;
-
-        System.out.println("Row: " + getRowFromSlot(slot));
-        System.out.println("Column: " + getColFromSlot(slot));
+        System.out.println(isValidMove(1, 1)); // test case
     }
 
     /**
-     * Converts slot number into row index (0-2)
+     * Checks if the move is inside the board and the cell is empty
      */
-    static int getRowFromSlot(int slot) {
-        return (slot - 1) / 3;
-    }
+    static boolean isValidMove(int row, int col) {
 
-    /**
-     * Converts slot number into column index (0-2)
-     */
-    static int getColFromSlot(int slot) {
-        return (slot - 1) % 3;
+        // Check boundaries (0 to 2)
+        if (row < 0 || row > 2 || col < 0 || col > 2) {
+            return false;
+        }
+
+        // Check if cell is empty
+        if (board[row][col] != ' ') {
+            return false;
+        }
+
+        return true;
     }
 }
