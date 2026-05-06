@@ -1,56 +1,30 @@
-import java.util.Random;
+import java.util.Scanner;
 
 /**
  * TicTacToe
- * UC2 performs a random toss to decide who plays first and assigns
- * symbols (X or O) to the human and computer accordingly.
+ * UC3 reads a slot number (1-9) entered by the user.
+ * This use case focuses only on input handling without validation.
  */
 public class TicTacToe {
-
-    static boolean isHumanTurn;
-    static char humanSymbol;
-    static char computerSymbol;
 
     /**
      * Entry point of the program.
      */
     public static void main(String[] args) {
-        tossAndAssignSymbols();
-        displayTossResult();
+
+        int slot = getUserSlot();
+        System.out.println("Slot entered: " + slot);
     }
 
     /**
-     * Uses random logic to decide the first player and assigns symbols
+     * Reads an integer slot value from the user.
      */
-    static void tossAndAssignSymbols() {
-        Random random = new Random();
+    static int getUserSlot() {
+        Scanner scanner = new Scanner(System.in);
 
-        // 0 → Human, 1 → Computer
-        int toss = random.nextInt(2);
+        System.out.print("Enter slot number (1-9): ");
+        int slot = scanner.nextInt();
 
-        if (toss == 0) {
-            isHumanTurn = true;
-            humanSymbol = 'X';
-            computerSymbol = 'O';
-        } else {
-            isHumanTurn = false;
-            humanSymbol = 'O';
-            computerSymbol = 'X';
-        }
-    }
-
-    /**
-     * Displays the toss result
-     */
-    static void displayTossResult() {
-        if (isHumanTurn) {
-            System.out.println("Human won the toss!");
-            System.out.println("Human plays first with symbol: " + humanSymbol);
-            System.out.println("Computer plays with symbol: " + computerSymbol);
-        } else {
-            System.out.println("Computer won the toss!");
-            System.out.println("Computer plays first with symbol: " + computerSymbol);
-            System.out.println("Human plays with symbol: " + humanSymbol);
-        }
+        return slot;
     }
 }
